@@ -1,0 +1,36 @@
+{% extends "layout.html" %} {% block content %}
+<h2 class="text-center mb-4">Tải lên tệp CSV</h2>
+
+<form action="/" method="POST" enctype="multipart/form-data" class="mb-5">
+    <div class="mb-3">
+        <label for="file" class="form-label">Chọn tệp CSV</label>
+        <input
+            type="file"
+            name="file"
+            id="file"
+            class="form-control"
+            required />
+    </div>
+    <button type="submit" class="btn btn-primary">Tải lên</button>
+</form>
+
+{% if table %}
+
+<form action="/ke-hoach-trong-cay" method="POST" class="mt-4">
+    <div class="mb-3">
+        <label for="total_months" class="form-label">Nhập số tháng</label>
+        <input
+            type="number"
+            id="total_months"
+            name="total_months"
+            class="form-control"
+            placeholder="Nhập số tháng, ví dụ: 12"
+            required />
+    </div>
+    <button type="submit" class="btn btn-success">Xem kế hoạch</button>
+    <div class="mt-4">
+        <h3>Dữ liệu đã tải lên</h3>
+        {{ table|safe }}
+    </div>
+</form>
+{% endif %} {% endblock %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách cây trồng</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Danh sách cây trồng</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Tên cây trồng</th>
+            <th>Tháng trồng</th>
+            <th>Lợi nhuận</th>
+            <th>Điểm đất</th>
+            <th>Điểm khả thi</th>
+        </tr>
+        {% for crop in crops %}
+        <tr>
+            <td>{{ crop.crop_id }}</td>
+            <td>{{ crop.crop_name }}</td>
+            <td>{{ crop.crop_month }}</td>
+            <td>{{ "{:,.0f}".format(crop.crop_profit) }} VND</td>
+            <td>{{ crop.crop_land_score }}</td>
+            <td>{{ crop.crop_viability_score }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

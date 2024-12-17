@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng Cây Trồng</title>
+</head>
+<body>
+    <h1>Bảng Cây Trồng</h1>
+    <table>
+        <tr>
+            <th>Vùng</th>
+            {% for month in range(1, crops_data[0]|length + 1) %}
+                <th>Tháng {{ month }}</th>
+            {% endfor %}
+        </tr>
+        {% set region_index = 1 %}
+        {% for region in crops_data %}
+        <tr>
+            <td>Vùng {{ region_index }}</td>
+            {% for month in range(1, crops_data[0]|length + 1) %}
+                <td>
+                    {% if region[month - 1] %}
+                        {{ region[month - 1].crop_name }} ({{ region[month - 1].crop_month }})
+                    {% else %}
+                        N/A
+                    {% endif %}
+                </td>
+            {% endfor %}
+        </tr>
+        {% set region_index = region_index + 1 %}
+        {% endfor %}
+    </table>
+</body>
+</html>

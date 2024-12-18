@@ -24,7 +24,7 @@ def make_new_crop(crop_id, leftover_month):
     else:
         return -1
 
-def update_individual(best_individual, individual_change):
+def update_individual(crop_list, total_month, best_individual, individual_change):
     for _ in range(200):
         individual = [a.copy() for a in best_individual]
         # make random number of crops must change

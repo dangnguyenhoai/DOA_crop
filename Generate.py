@@ -3,7 +3,7 @@ import numpy as np
 from untils import valid_individual
 def generate_individual(crop_list, total_month):
     result = []
-    for noi in range(50):
+    while len(result) < 50:
         individual = [[] for _ in range(4)]  # Khởi tạo danh sách chứa cây cho từng vùng
         valid_crop_list = [crop for crop in crop_list if crop["crop_month"] <= total_month]
         land_clist = [{"crop_id": c["crop_id"], "remaining_month_crop": c["crop_month"], "remaining_month_land": total_month - c["crop_month"]} for c in random.sample(valid_crop_list, 4)]
@@ -43,8 +43,7 @@ def generate_individual(crop_list, total_month):
                             v["remaining_month_crop"] = 0
                             v["remaining_month_land"] = 0
             
-        if valid_individual(individual) == False:
-            noi -=1
+        if valid_individual(crop_list, individual) == False:
             continue
         result.append(individual)
     return result

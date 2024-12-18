@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 import pandas as pd
 import os
 from models.crop import Crop, Region, CropScheduler
-from algorithm.Fitness import DOA_Fuction
+from algorithm.DOA_Main import DOA_main
 
 app = Flask(__name__)
 
@@ -11,6 +11,76 @@ if not os.path.exists('uploads'):
     os.makedirs('uploads')
 
 crop_list = []
+def generate_crop_schedule(result, crop_list, total_months):
+    crop_dict = {
+        crop['crop_id']: {
+            'crop_name': crop['crop_name'],
+            'crop_month': round(crop['crop_month'], 1)
+        }
+        for crop in crop_list
+    }
+
+    months = [f"Tháng {i + 1}" for i in range(total_months)]
+    schedule = {month: [] for month in months}
+
+    for region_index, crops_in_region in enumerate(result):
+        print(f"\n================== Vùng {region_index + 1} ====================")
+        remaining_time = 0
+        temp_name = ""
+        month_index = 0
+
+        for crop_id in crops_in_region:
+            if month_index >= total_months:
+                break
+
+            crop = crop_dict.get(crop_id, {})
+            crop_name = crop.get('crop_name', 'Unknown')
+            crop_month = round(crop.get('crop_month', 0), 1)
+            print(f"\nCrop: {crop_name} | Thời gian cần: {crop_month} tháng")
+
+            while crop_month > 0 and month_index < total_months:
+                remaining_time = round(remaining_time, 1)
+
+                if remaining_time > 0:
+                    print(f"Sử dụng thời gian dư từ tháng trước: {remaining_time} tháng")
+                    if crop_month <= remaining_time:
+                        temp_name += f" + {crop_name} ({crop_month})"
+                        schedule[months[month_index]].append(temp_name.strip('+ '))
+                        remaining_time = round(remaining_time - crop_month, 1)
+                        crop_month = 0
+                        temp_name = ""
+                        month_index += 1
+                    else:
+                        temp_name += f" + {crop_name} ({remaining_time})"
+                        schedule[months[month_index]].append(temp_name.strip('+ '))
+                        crop_month = round(crop_month - remaining_time, 1)
+                        remaining_time = 0
+                        month_index += 1
+                        temp_name = ""
+                else:
+                    if crop_month >= 1:
+                        print(f"Tháng {months[month_index]}: Trồng {crop_name} (1.0 tháng)")
+                        schedule[months[month_index]].append(f"{crop_name} (1.0)")
+                        month_index += 1
+                        crop_month = round(crop_month - 1, 1)
+                    else:
+                        print(f"Tháng {months[month_index]}: Trồng dư {crop_name} ({crop_month} tháng)")
+                        temp_name = f"{crop_name} ({crop_month})"
+                        remaining_time = round(1 - crop_month, 1)
+                        crop_month = 0
+
+        # Kiểm tra thời gian dư cuối cùng
+        if remaining_time > 0 and month_index < total_months:
+            print(f"Tháng {months[month_index]}: Ghi lại thời gian dư cho {temp_name.strip('+ ')}")
+            schedule[months[month_index]].append(f"{temp_name.strip('+ ')} ({remaining_time})")
+
+    for month in months:
+        if not schedule[month]:
+            del schedule[month]
+
+    df = pd.DataFrame.from_dict(schedule, orient='index')
+    df = df.transpose()
+    return df
 
 # Trang để hiển thị kế hoạch trồng cây
 @app.route("/ke-hoach-trong-cay", methods=["POST"])
@@ -23,13 +93,11 @@ def show_schedule():
 
     # Tạo lịch trình dựa trên crop_list và kết quả
     try:
-        result = DOA_Fuction(crop_list, total_months)
-        crop_schedule = CropScheduler(crop_list, result, total_months=total_months)
-        schedule = crop_schedule.generate_crop_schedule()
+        result = DOA_main(crop_list, total_months)
+        schedule_df = generate_crop_schedule(result, crop_list, total_months)
 
         # Chuyển dữ liệu thành DataFrame để hiển thị dưới dạng bảng
-        df = pd.DataFrame.from_dict(schedule, orient="index").transpose()
-        table_html = df.to_html(classes="table table-bordered", border=0, justify="center")
+        table_html = schedule_df.to_html(classes="table table-bordered", border=0, justify="center")
 
         return render_template("schedule.html", table=table_html)
 

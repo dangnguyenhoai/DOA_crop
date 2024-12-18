@@ -1,6 +1,9 @@
 import random
 import numpy as np
 from algorithm.untils import valid_individual
+import random
+import numpy as np
+from algorithm.untils import valid_individual
 def generate_individual(crop_list, total_month):
     result = []
     while len(result) < 50:
@@ -43,7 +46,7 @@ def generate_individual(crop_list, total_month):
                             v["remaining_month_crop"] = 0
                             v["remaining_month_land"] = 0
             
-        if valid_individual(individual) == False:
+        if valid_individual(crop_list, individual) == False:
             continue
         result.append(individual)
     return result

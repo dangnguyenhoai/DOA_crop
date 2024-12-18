@@ -1,7 +1,6 @@
-from algorithm.Data import crop_list
-def find_crop_id(crop_id, crop_list):
+def find_crop_id(crop_list, crop_id):
     return next((cay for cay in crop_list if cay["crop_id"] == crop_id),None)
-def valid_individual(individual): 
+def valid_individual(crop_list, individual): 
     individual_t = [a.copy() for a in individual]
     land_dict = []
     

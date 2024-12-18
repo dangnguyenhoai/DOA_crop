@@ -1,21 +1,17 @@
 from untils import find_crop_id
 from untils import valid_individual
-from Data import crop_list
 from Fitness import fitness_individual
-total_month = 15
 import random
-import numpy as np
 
-def remaining_month(individual):
+def remaining_month(crop_list, land_clist, total_month):
     month_temp = 0
-    for land_clist in individual:
-        for crop_id in land_clist:
-            crop = find_crop_id(crop_id)
-            month_temp += crop["crop_month"]
+    for crop_id in land_clist:
+        crop = find_crop_id(crop_list, crop_id)
+        month_temp += crop["crop_month"]
     return total_month - month_temp
 
-def make_new_crop(crop_id, leftover_month):
-    temp = find_crop_id(crop_id)
+def make_new_crop(crop_list, crop_id, leftover_month):
+    temp = find_crop_id(crop_list, crop_id)
     random.shuffle(crop_list)
     for newc in crop_list:
         # find new valid crop about month
@@ -24,7 +20,7 @@ def make_new_crop(crop_id, leftover_month):
     else:
         return -1
 
-def update_individual(best_individual, individual_change):
+def update_individual(crop_list, total_month, best_individual, individual_change):
     for _ in range(200):
         individual = [a.copy() for a in best_individual]
         # make random number of crops must change
@@ -34,15 +30,11 @@ def update_individual(best_individual, individual_change):
             land = random.randint(0,3)
             # random crop
             value = random.choice(individual[land])
-            index = individual[land].index(value)
-            new = make_new_crop(value, remaining_month(individual))
+            index_value = individual[land].index(value)
+            new = make_new_crop(crop_list, value, remaining_month(crop_list, individual[land],total_month))
             if(new != -1):
-                individual[land][index] = new
-        if(valid_individual(individual) and fitness_individual(individual) > fitness_individual(individual_change)):
+                individual[land][index_value] = new
+        if(valid_individual(crop_list, individual) and fitness_individual(individual, crop_list, total_month) > fitness_individual(individual_change, crop_list, total_month)):
             return individual
     else:
         return individual_change
-
-if __name__ == "__main__":
-    individual = [[8, 4, 7, 16, 13, 18], [15, 12, 19, 8, 13, 14], [10, 18, 8, 17, 18], [11, 18, 9, 15]]
-    print("Cá thể hợp lệ: ",valid_individual(individual))

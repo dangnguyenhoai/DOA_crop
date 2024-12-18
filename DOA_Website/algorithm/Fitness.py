@@ -12,7 +12,7 @@ def convert_stp(score):
         return 40
     return 60
 def profit_crop(crop_id, crop_list):
-    crop = find_crop_id(crop_id, crop_list)
+    crop = find_crop_id(crop_list, crop_id)
     # profit_final = crop_profit - crop_profit * percentage of (crop_land_score + crop_viabilit_score) / 100
     profit = crop["crop_profit"] - crop["crop_profit"] * (convert_stp(crop["crop_land_score"]) + convert_stp(crop["crop_viability_score"]))/100
     return profit
@@ -25,7 +25,7 @@ def profit_land(land_clist, crop_list, total_month):
         profit += profit_crop(crop_id, crop_list)
     # sum month of land
     for crop_id in land_clist:
-        crop = find_crop_id(crop_id, crop_list)
+        crop = find_crop_id(crop_list, crop_id)
         month_temp += crop["crop_month"]
     # Subtract the percentage of the surplus months from the profit
     profit -= (1 - month_temp/total_month) * profit
@@ -39,15 +39,23 @@ class Result_individual:
     def __init__(self, individual=None, fitness=0):
         self.individual = individual
         self.fitness = fitness
-def best_fitness(individual_list, crop_list, total_month):
+def find_best_individual(individual_list, crop_list, total_month):
     rs_list = [
         Result_individual(individual, fitness_individual(individual, crop_list, total_month))
         for individual in individual_list
     ]
     max_fitness = max(rs_list, key = lambda obj: obj.fitness)
     return max_fitness.individual
+def find_worst_individual(individual_list, crop_list, total_month):
+    rs_list = [
+        Result_individual(individual, fitness_individual(individual, crop_list, total_month))
+        for individual in individual_list
+    ]
+    min_fitness = min(rs_list, key = lambda obj: obj.fitness)
+    return min_fitness.individual
+
 
 def DOA_Fuction(crop_list, total_month):
     individual_list = generate_individual(crop_list, total_month)
-    best_individual = best_fitness(individual_list,crop_list,total_month)
+    best_individual = find_best_individual(individual_list,crop_list,total_month)
     return best_individual

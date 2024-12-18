@@ -1,4 +1,5 @@
 from algorithm.Generate import generate_individual
+from untils import find_crop_id
 #convert score to percentage
 def convert_stp(score):
     if score == 1:
@@ -10,8 +11,6 @@ def convert_stp(score):
     if score == 4:
         return 40
     return 60
-def find_crop_id(crop_id, crop_list):
-    return next((cay for cay in crop_list if cay["crop_id"] == crop_id),None)
 def profit_crop(crop_id, crop_list):
     crop = find_crop_id(crop_id, crop_list)
     # profit_final = crop_profit - crop_profit * percentage of (crop_land_score + crop_viabilit_score) / 100
@@ -46,12 +45,9 @@ def best_fitness(individual_list, crop_list, total_month):
         for individual in individual_list
     ]
     max_fitness = max(rs_list, key = lambda obj: obj.fitness)
-    return max_fitness
+    return max_fitness.individual
 
 def DOA_Fuction(crop_list, total_month):
     individual_list = generate_individual(crop_list, total_month)
-    for individual in individual_list:
-        print(individual)
-        print(fitness_individual(individual, crop_list,total_month))
     best_individual = best_fitness(individual_list,crop_list,total_month)
-    return best_individual.individual
+    return best_individual

@@ -1,7 +1,7 @@
-from untils import find_crop_id
-from untils import valid_individual
-from Data import crop_list
-from Fitness import fitness_individual
+from algorithm.untils import find_crop_id
+from algorithm.untils import valid_individual
+from algorithm.Data import crop_list
+from algorithm.Fitness import fitness_individual
 total_month = 15
 import random
 import numpy as np
@@ -43,6 +43,6 @@ def update_individual(best_individual, individual_change):
     else:
         return individual_change
 
-if __name__ == "__main__":
-    individual = [[8, 4, 7, 16, 13, 18], [15, 12, 19, 8, 13, 14], [10, 18, 8, 17, 18], [11, 18, 9, 15]]
-    print("Cá thể hợp lệ: ",valid_individual(individual))
+# if __name__ == "__main__":
+#     individual = [[17, 19, 5, 18], [16, 4, 3, 15], [13, 2, 12, 9, 4, 18, 14], [7, 8, 7, 13]]
+#     print("Cá thể hợp lệ: ",valid_condition(individual))

@@ -1,0 +1,23 @@
+crop_list = [
+        {"crop_id": 1, "crop_name": "Mè", "crop_month": 3.7, "crop_profit": 15000, "crop_land_score": 2, "crop_viability_score": 3},
+        {"crop_id": 2, "crop_name": "Ngô", "crop_month": 3.7, "crop_profit": 20000, "crop_land_score": 1, "crop_viability_score": 1},
+        {"crop_id": 3, "crop_name": "Khoai", "crop_month": 5.5, "crop_profit": 35000, "crop_land_score": 2, "crop_viability_score": 2},
+        {"crop_id": 4, "crop_name": "Đậu", "crop_month": 2.4, "crop_profit": 12000, "crop_land_score": 1, "crop_viability_score": 1},
+        {"crop_id": 5, "crop_name": "Dưa hấu", "crop_month": 3.4, "crop_profit": 5000, "crop_land_score": 2, "crop_viability_score": 2},
+        {"crop_id": 6, "crop_name": "Sắn", "crop_month": 9.6, "crop_profit": 25000, "crop_land_score": 3, "crop_viability_score": 3},
+        {"crop_id": 7, "crop_name": "Ớt", "crop_month": 5.6, "crop_profit": 80000, "crop_land_score": 1, "crop_viability_score": 1},
+        {"crop_id": 8, "crop_name": "Su hào", "crop_month": 2.2, "crop_profit": 15000, "crop_land_score": 1, "crop_viability_score": 1},
+        {"crop_id": 9, "crop_name": "Bí đỏ", "crop_month": 3.8, "crop_profit": 30000, "crop_land_score": 2, "crop_viability_score": 2},
+        {"crop_id": 10, "crop_name": "Cà rốt", "crop_month": 3.0, "crop_profit": 25000, "crop_land_score": 2, "crop_viability_score": 2},
+        {"crop_id": 11, "crop_name": "Cà tím", "crop_month": 5.7, "crop_profit": 40000, "crop_land_score": 1, "crop_viability_score": 1},
+        {"crop_id": 12, "crop_name": "Cải bắp", "crop_month": 2.1, "crop_profit": 18000, "crop_land_score": 1, "crop_viability_score": 1},
+        {"crop_id": 13, "crop_name": "Hành lá", "crop_month": 0.8, "crop_profit": 12000, "crop_land_score": 1, "crop_viability_score": 1},
+        {"crop_id": 14, "crop_name": "Rau muống", "crop_month": 1.3, "crop_profit": 8000, "crop_land_score": 1, "crop_viability_score": 1},
+        {"crop_id": 15, "crop_name": "Cà chua", "crop_month": 3.9, "crop_profit": 45000, "crop_land_score": 1, "crop_viability_score": 1},
+        {"crop_id": 16, "crop_name": "Bắp cải", "crop_month": 2.9, "crop_profit": 22000, "crop_land_score": 1, "crop_viability_score": 1},
+        {"crop_id": 17, "crop_name": "Măng tây", "crop_month": 6.6, "crop_profit": 60000, "crop_land_score": 3, "crop_viability_score": 3},
+        {"crop_id": 18, "crop_name": "Xà lách", "crop_month": 0.9, "crop_profit": 10000, "crop_land_score": 1, "crop_viability_score": 1},
+        {"crop_id": 19, "crop_name": "Dâu tây", "crop_month": 4.0, "crop_profit": 90000, "crop_land_score": 3, "crop_viability_score": 3},
+        {"crop_id": 20, "crop_name": "Cải thìa", "crop_month": 2.5, "crop_profit": 15000, "crop_land_score": 1, "crop_viability_score": 1},
+        {"crop_id": 21, "crop_name": "Sầu riêng", "crop_month": 25.4, "crop_profit": 1500000, "crop_land_score": 4, "crop_viability_score": 4}
+]

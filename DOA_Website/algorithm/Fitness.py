@@ -1,5 +1,5 @@
 from algorithm.Generate import generate_individual
-from untils import find_crop_id
+from algorithm.untils import find_crop_id
 #convert score to percentage
 def convert_stp(score):
     if score == 1:

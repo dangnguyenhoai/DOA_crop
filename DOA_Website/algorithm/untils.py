@@ -1,4 +1,4 @@
-from Data import crop_list
+from algorithm.Data import crop_list
 def find_crop_id(crop_id, crop_list):
     return next((cay for cay in crop_list if cay["crop_id"] == crop_id),None)
 def valid_individual(individual): 

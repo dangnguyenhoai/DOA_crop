@@ -1,23 +1,11 @@
-from Fitness import find_crop_id
+from untils import find_crop_id
+from untils import valid_condition
 from Data import crop_list
 from Fitness import fitness_individual
 total_month = 15
 import random
 import numpy as np
-def valid_condition(individual):
-    numbers_of_land = len(individual)
-    individual_t = [a.copy() for a in individual]
-    # generate 1 variable for check id crop 
-    individual_id = [] * numbers_of_land
-    # generate 1 variable for check remaining month crop 
-    individual_rm = [] * numbers_of_land
-    land_info = [{"land_id": 0, "remaining_month": 0} for _ in range(numbers_of_land)]
-    # Process
-    for i in individual_t:
-        land_info[i]
-    
-    
-    return True
+
 def remaining_month(individual):
     month_temp = 0
     for land_clist in individual:
@@ -25,6 +13,7 @@ def remaining_month(individual):
             crop = find_crop_id(crop_id)
             month_temp += crop["crop_month"]
     return total_month - month_temp
+
 def make_new_crop(crop_id, leftover_month):
     temp = find_crop_id(crop_id)
     random.shuffle(crop_list)
@@ -49,9 +38,11 @@ def update_individual(best_individual, individual_change):
             new = make_new_crop(value, remaining_month(individual))
             if(new != -1):
                 individual[land][index] = new
-        if(valid_condition(individual) and fitness_individual(individual) > fitness_individual(best_individual)):
+        if(valid_condition(individual) and fitness_individual(individual) > fitness_individual(individual_change)):
             return individual
     else:
         return individual_change
-if __name__ == "__main__":
-    print("Ok")
+
+# if __name__ == "__main__":
+#     individual = [[17, 19, 5, 18], [16, 4, 3, 15], [13, 2, 12, 9, 4, 18, 14], [7, 8, 7, 13]]
+#     print("Cá thể hợp lệ: ",valid_condition(individual))

@@ -31,7 +31,6 @@ def DOA_main(crop_list, total_month):
     # Init populations
     individual_list = generate_individual(crop_list, total_month)
     best_individual = find_best_individual(individual_list, crop_list, total_month)
-    # print("Profit: ", fitness_individual(best_individual, crop_list, total_month),"\n")
     for i in range(1000):
         print("\033[31mVong lap thu: \033[0m", i+1)
         # process individual
@@ -50,13 +49,7 @@ def DOA_main(crop_list, total_month):
         # compare fitness
         if fitness_individual(best_individual_now, crop_list, total_month) > fitness_individual(best_individual, crop_list, total_month):
             best_individual = best_individual_now
-            print("Profit: ", fitness_individual(best_individual, crop_list, total_month),"\n")
-        print("Profit Best: ", fitness_individual(best_individual, crop_list, total_month),"\n")
-        print("Profit Best Now: ", fitness_individual(best_individual_now, crop_list, total_month),"\n")
-        worst_individual = find_worst_individual(individual_list, crop_list, total_month)
-        print("Profit Worst: ", fitness_individual(worst_individual, crop_list, total_month),"\n")
         
-
     return best_individual
 if __name__ == '__main__':
     DOA_main(crop_list,15)

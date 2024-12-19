@@ -32,7 +32,7 @@ def DOA_main(crop_list, total_month):
     individual_list = generate_individual(crop_list, total_month)
     best_individual = find_best_individual(individual_list, crop_list, total_month)
     # print("Profit: ", fitness_individual(best_individual, crop_list, total_month),"\n")
-    for i in range(300):
+    for i in range(100):
         ##print("\033[31mVong lap thu: \033[0m", i+1)
         # process individual
         for individual in individual_list:  

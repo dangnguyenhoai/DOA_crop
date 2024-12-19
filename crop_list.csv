@@ -5,7 +5,7 @@ crop_id,crop_name,crop_month,crop_profit,crop_land_score,crop_viability_score
 4,Đậu,2.4,12000,1,1
 5,Dưa hấu,3.4,5000,2,2
 6,Sắn,9.6,25000,3,3
-7,Ởt,5.6,80000,1,1
+7,Ớt,5.6,80000,1,1
 8,Su hào,2.2,15000,1,1
 9,Bí đỏ,3.8,30000,2,2
 10,Cà rốt,3.0,25000,2,2
@@ -17,6 +17,6 @@ crop_id,crop_name,crop_month,crop_profit,crop_land_score,crop_viability_score
 16,Bắp cải,2.9,22000,1,1
 17,Măng tây,6.6,60000,3,3
 18,Xà lách,0.9,10000,1,1
-19,Dâu tây,4.0,90000,3,3
+19,Dâu tây,16.0,90000,3,3
 20,Cải thìa,2.5,15000,1,1
-21,Sầu riêng,25.4,1500000,4,4
+21,Củ cải,2,25000,1,1

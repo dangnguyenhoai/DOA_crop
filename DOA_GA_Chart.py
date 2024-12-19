@@ -105,10 +105,10 @@ if __name__ == '__main__':
     from DOA_Chart import DOA_main
 
     # Chạy thuật toán DOA
-    best_individual_doa, best_fitness_values_doa = DOA_main(crop_list, total_month=15)
+    best_individual_doa, best_fitness_values_doa = DOA_main(crop_list, total_month=12)
 
     # Chạy thuật toán GA
-    best_individual_ga, best_fitness_values_ga = GA_main(crop_list, total_month=15, generations=300)
+    best_individual_ga, best_fitness_values_ga = GA_main(crop_list, total_month=12, generations=1000)
 
     # Vẽ biểu đồ so sánh
     plot_comparison_chart(best_fitness_values_doa, best_fitness_values_ga)

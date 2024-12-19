@@ -17,7 +17,7 @@ crop_list = [
         {"crop_id": 16, "crop_name": "Bắp cải", "crop_month": 2.9, "crop_profit": 22000, "crop_land_score": 1, "crop_viability_score": 1},
         {"crop_id": 17, "crop_name": "Măng tây", "crop_month": 6.6, "crop_profit": 60000, "crop_land_score": 3, "crop_viability_score": 3},
         {"crop_id": 18, "crop_name": "Xà lách", "crop_month": 0.9, "crop_profit": 10000, "crop_land_score": 1, "crop_viability_score": 1},
-        {"crop_id": 19, "crop_name": "Dâu tây", "crop_month": 4.0, "crop_profit": 90000, "crop_land_score": 3, "crop_viability_score": 3},
+        {"crop_id": 19, "crop_name": "Dâu tây", "crop_month": 16.0, "crop_profit": 90000, "crop_land_score": 3, "crop_viability_score": 3},
         {"crop_id": 20, "crop_name": "Cải thìa", "crop_month": 2.5, "crop_profit": 15000, "crop_land_score": 1, "crop_viability_score": 1},
-        {"crop_id": 21, "crop_name": "Sầu riêng", "crop_month": 25.4, "crop_profit": 1500000, "crop_land_score": 4, "crop_viability_score": 4}
+        {"crop_id": 21, "crop_name": "Củ cải", "crop_month": 2, "crop_profit": 25000, "crop_land_score": 1, "crop_viability_score": 1}
 ]

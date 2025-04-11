@@ -1,0 +1,9 @@
+# Bỏ qua file rác, file build
+*.pyc
+__pycache__/
+*.log
+*.tmp
+.DS_Store
+*.exe
+*.out
+node_modules/
